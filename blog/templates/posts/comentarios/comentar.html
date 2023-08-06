@@ -1,0 +1,18 @@
+{% load path_tags %}
+<div class="col">
+    {% if user.is_authenticated %}
+    <h3>Comentar</h3>
+    <form method="POST" action="{{post.get_add_comment_url}}">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form }}
+        </div>
+        <button class="btn btn-primary" type="submit">Enviar</button>
+    </form>
+    {% else %}
+    <p>Debe iniciar sesión para añadir un comentario</p> 
+    <a class="btn btn-secondary" href="{% login_path %}">iniciar sesión</a> <a class="btn btn-secondary" href="{% register_path %}">resgistrarse</a>
+
+
+    {% endif %} 
+</div>

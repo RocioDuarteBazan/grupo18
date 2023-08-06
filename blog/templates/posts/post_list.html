@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Articulos{% endblock title %} 
+
+
+{% block contenido %}
+   
+
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <div class="text-center mb-3 pb-3">
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Filtrar Blog</h6>
+                <h1>
+                    {% if categoria %}
+                    Categoria: "{{categoria}}"
+                    {% else %}
+                    ¡Lo más reciente!
+                    {% endif %}
+                </h1>
+            </div>
+            <div class="row pb-3">
+                <div class="text-center mb-3 pb-3">
+                    
+                    <di class="col">
+                    
+                            <a id="boton_post" href="{% url 'posts:posts' %}?orden=reciente">Más reciente</a>
+                            <a id="boton_post" href="{% url 'posts:posts' %}?orden=antiguo">Más antiguo</a> 
+                            <a id="boton_post" href="{% url 'posts:posts' %}?orden=alfabetico">Orden alfabético</a> 
+                       
+                    </di>
+                </div>
+                {% for post in posts %} 
+                {% include 'posts/post_card.html' %}
+                {% empty %}
+                <h2>No hay articulos para mostrar ...!</h2>
+                {% endfor %} 
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+   
+               
+{% endblock contenido %}
